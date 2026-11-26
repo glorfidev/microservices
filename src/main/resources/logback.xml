@@ -1,0 +1,14 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%level - %logger - %message%n%xException</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.apache.pekko.cluster.ddata" level="DEBUG" />
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

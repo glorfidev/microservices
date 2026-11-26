@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Job Cluster Toolkit</title>
+  <link rel="stylesheet" href="/console.css">
+  <script defer src="/console.js"></script>
+</head>
+<body>
+  <aside class="rail">
+    <a class="brand" href="#overview">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>Job Cluster<span class="brand-sub">Toolkit</span></span>
+    </a>
+    <nav aria-label="Workspace">
+      <a class="active" href="#overview">Overview</a>
+      <a href="#nodes">Nodes</a>
+      <a href="#services">Services</a>
+      <a href="#postings">Job postings</a>
+    </nav>
+    <div class="rail-note">
+      <span class="rail-dot"></span>
+      <div>Local demo<small>Apache Pekko cluster</small></div>
+    </div>
+  </aside>
+
+  <main id="overview">
+    <header class="topbar">
+      <span>Workspace <span class="separator">/</span> Overview</span>
+      <span id="connection" class="connection" role="status">Connecting</span>
+    </header>
+    <div class="content">
+      <div class="intro">
+        <div>
+          <h1>Cluster overview</h1>
+          <p>Manage the demo cluster and follow job postings through review.</p>
+        </div>
+        <button class="primary" id="open-posting" disabled>New posting</button>
+      </div>
+
+      <div class="metrics" aria-label="Cluster summary">
+        <article><span>Nodes online</span><strong id="online">—</strong><small>Cluster members</small></article>
+        <article><span>Services running</span><strong id="running">—</strong><small>Managed actors</small></article>
+        <article><span>Pending reviews</span><strong id="pending">—</strong><small>Awaiting a decision</small></article>
+      </div>
+
+      <div id="notice" class="notice" role="status" hidden></div>
+
+      <div class="management">
+        <section id="nodes" class="panel">
+          <header><h2>Nodes</h2><p>Start or stop cluster members independently.</p></header>
+          <div id="node-list" class="items"><p class="empty compact">Connecting to the cluster…</p></div>
+        </section>
+        <section id="services" class="panel">
+          <header><h2>Services</h2><p>Pause or resume a service on its host node.</p></header>
+          <div id="service-list" class="items"><p class="empty compact">Waiting for service status…</p></div>
+        </section>
+      </div>
+
+      <section id="postings" class="panel postings">
+        <header>
+          <div><h2>Job postings</h2><p>Submissions and decisions are saved across workflow restarts.</p></div>
+        </header>
+        <div class="filters" aria-label="Filter postings">
+          <button type="button" data-filter="All" aria-pressed="true">All postings</button>
+          <button type="button" data-filter="Pending" aria-pressed="false">Pending</button>
+          <button type="button" data-filter="Approved" aria-pressed="false">Approved</button>
+          <button type="button" data-filter="Rejected" aria-pressed="false">Rejected</button>
+        </div>
+        <div id="job-notice" class="job-notice" role="status" hidden></div>
+        <div id="job-list"><p class="empty">Loading postings…</p></div>
+      </section>
+    </div>
+  </main>
+
+  <dialog id="posting-dialog" aria-labelledby="dialog-title">
+    <form id="posting-form">
+      <div class="dialog-heading">
+        <div><h2 id="dialog-title">New job posting</h2><p>Use a fictional employer and a demo title.</p></div>
+        <button type="button" id="close-posting" class="close" aria-label="Close dialog">×</button>
+      </div>
+      <label for="employer">Employer</label>
+      <select id="employer" name="employer" required></select>
+      <label for="job-title">Job title</label>
+      <input type="text" id="job-title" name="title" maxlength="100" placeholder="e.g. Robotics Technician" required>
+      <label for="positions">Positions</label>
+      <input type="number" id="positions" name="positions" min="1" max="100" step="1" value="1" required>
+      <p class="form-help">For this demo, requests for up to five positions are approved automatically.</p>
+      <p id="form-error" class="form-error" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button type="button" class="secondary" id="cancel-posting">Cancel</button>
+        <button type="submit" class="primary" id="submit-posting">Submit posting</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>

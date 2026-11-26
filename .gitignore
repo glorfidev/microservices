@@ -1,0 +1,7 @@
+# sbt build output (including the project meta-build)
+target/
+
+# Local build-server and IntelliJ metadata
+/.bsp/
+/.idea/
+/.toolkit-data/
